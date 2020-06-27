@@ -1,0 +1,16 @@
+.name-surname {
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-blcok{
+    text-align: center;
+}
+
+.name-surname input#user-name {
+    margin-right: 10px;
+}
+
+.name-surname input {
+    min-width: 200px;
+}

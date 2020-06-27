@@ -1,0 +1,48 @@
+div.wrapper-header {
+    position: relative;
+}
+
+.profile {
+    height: 80%;
+}
+
+.profile form {
+    background: #fff;
+    padding: 30px 50px;
+    width: 60%;
+    border-radius: 5px;
+}
+
+p {
+    text-align: center;
+    color: #00000080;
+}
+
+.title {
+    margin-bottom: 30px;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: .1px .1px 8px .1px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    width: 40%;
+}
+
+.card.right {
+    padding-top: 50px;
+}
+
+.logo-card {
+    margin-left: auto;
+}
+
+.btn-block {
+    margin-top: 20px;
+}

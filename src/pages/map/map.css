@@ -1,0 +1,57 @@
+.black {
+    color: #000;
+}
+
+/* Map component ------------------------------------------------------------------------------------ */
+#map {
+    height: 100vh;
+    width: 100%;
+    background: #423c3c;
+}
+
+/* Rout map --------------------------------------------------------------------------------------- */
+.wrapper-route {
+    position: fixed;
+    top: 120px;
+    left: 15px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 40px;
+}
+
+.wrapper-input {
+    position: relative;
+}
+
+.arrow {
+    color: #00000080;
+    font-weight: 900;
+    text-align: center;
+    padding: 0px 15px;
+    margin-left: 15px;
+    border-left: 1px solid #00000080;
+    cursor: pointer;
+}
+
+.arrow:hover {
+    color: #000;
+}
+
+.tooltip {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: #fff;
+    width: 100%;
+    z-index: 2;
+}
+
+.tooltip-item {
+    padding: 10px 15px;
+    background: #fff;
+}
+
+.tooltip-item:hover {
+    background: #cac3c380;
+}

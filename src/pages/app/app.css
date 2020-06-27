@@ -1,0 +1,161 @@
+/*Обнуление*/
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+
+.app {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.wrapper {
+    background-color: #111111;
+    background: #111111 url('/background.jpg') no-repeat center bottom;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 35px;
+    text-align: center;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    display: block;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Logo  ----------------------------------------------------------------------------------- */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-img {
+    margin-left: 15px;
+    font-family: 'Oleo Script', cursive;
+    font-size: 55px;
+    color: #fff;
+}
+
+.logo-img .yellow {
+    margin-right: 5px;
+    color: #ffa600;
+}
+
+/* Header  ----------------------------------------------------------------------------------- */
+.wrapper-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: .5px .5px 8px .2px rgba(0, 0, 0, 0.5);
+    background: #fff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    color: #000000de;;
+}
+
+.link:hover {
+    background: #00000014;;
+}
+
+/* Form --------------------------------------------------------------------------------------- */
+.registration,
+.login {
+    display: flex;
+    justify-content: space-between;
+    min-width:1100px;
+}
+
+.login-form,
+.registration-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 5px;
+    font-size: 18px;
+    min-width: 45%;
+}
+
+.link-blcok {
+    margin: 35px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input ----------------------------------------------------------------------------------- */
+input {
+    background: inherit;
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .5);
+    padding: 10px;
+    color: #000;
+    font-size: 18px;
+    min-width: 280px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    z-index: 1;
+}
+
+input:hover {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 1);
+}
+input:focus {
+    box-shadow: 0 2px 0 0 rgba(0, 0, 0, 1);
+}
+
+/* Button ------------------------------------------------------------------------------------------ */
+button {
+    font-size: 17px;
+    padding: 10px 25px;
+    background: #ffa600;
+    margin: 20px auto 0 auto;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #c27e00;
+}
