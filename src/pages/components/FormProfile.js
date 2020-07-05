@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Input from './Input';
 
 const FormProfile = () => {
+    const [form, setForm] = useState({
+        'number-card': '',
+        validity: '',
+        'user-name': '',
+        cvc: ''
+    });
+
+    // const { loading, request, error , clearError } = UseHttp();
+
+    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+
     return (
         <form>
             <div className="title">
@@ -25,7 +36,8 @@ const FormProfile = () => {
                             type: "text",
                             name: "number-card",
                             id: "number-card",
-                            placeholder: "0000 0000 0000 0000"
+                            placeholder: "0000 0000 0000 0000",
+                            changeValue
                         }} />
                     </div>
                     <div className="wrapper-input">
@@ -34,7 +46,8 @@ const FormProfile = () => {
                             type: "month",
                             name: "validity",
                             id: "validity",
-                            placeholder: "Срок действия"
+                            placeholder: "Срок действия",
+                            changeValue
                         }} />
                     </div>
                 </div>
@@ -45,7 +58,8 @@ const FormProfile = () => {
                             type: "text",
                             name: "user-name",
                             id: "user-name",
-                            placeholder: "Имя владельца"
+                            placeholder: "Имя владельца",
+                            changeValue
                         }} />
                     </div>
                     <div className="wrapper-input">
@@ -54,7 +68,8 @@ const FormProfile = () => {
                             type: "text",
                             name: "cvc",
                             id: "cvc",
-                            placeholder: "CVC"
+                            placeholder: "CVC",
+                            changeValue
                         }} />
                     </div>
                 </div>

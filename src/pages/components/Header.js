@@ -10,7 +10,7 @@ const Header = () => {
                 <nav className="nav">
                     <a className="link map" href="/map">Карта</a>
                     <a className="link profile-link" href="/profile">Профиль</a>
-                    <a className="link logout" href="/">Выйти</a>
+                    <a className="link logout" href="/login">Выйти</a>
                 </nav>
             </header>
         </div>

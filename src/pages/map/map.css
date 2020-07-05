@@ -17,6 +17,7 @@
     background: #fff;
     border-radius: 5px;
     padding: 40px;
+    z-index: 2;
 }
 
 .wrapper-input {
@@ -44,7 +45,7 @@
     left: 0;
     background: #fff;
     width: 100%;
-    z-index: 2;
+    z-index: 3;
 }
 
 .tooltip-item {

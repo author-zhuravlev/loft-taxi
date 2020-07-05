@@ -16,23 +16,20 @@ const useRoutes = isAuthenticated => {
                 <Route path="/profile" exact>
                     <Profile />
                 </Route>
-                <Route path="/" exact>
-                    <Login />
-                </Route>
-                <Redirect to="/map" />
+                <Redirect to="/map"  exact/>
             </Switch>
         )
     }
 
     return (
         <Switch>
-            <Route path="/" exact>
+            <Route path="/login" exact>
                 <Login />
             </Route>
             <Route path="/registration" exact>
                 <Registration />
             </Route>
-            <Redirect to="/" />
+            <Redirect to="/login" exact/>
         </Switch>
     )
 };

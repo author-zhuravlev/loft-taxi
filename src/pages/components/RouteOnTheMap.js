@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Input from './Input';
 import Tooltip from './Tooltip';
 
 const RouteOnTheMap = () => {
+    const [form, setForm] = useState({
+        from: '',
+        to: ''
+    });
+
+    // const { loading, request, error , clearError } = UseHttp();
+
+    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+
     return (
         <div className="wrapper-route">
             <form
@@ -15,7 +24,8 @@ const RouteOnTheMap = () => {
                         type: "text",
                         name: "from",
                         id: "from",
-                        placeholder: "Откуда"
+                        placeholder: "Откуда",
+                        changeValue
                     }} />
                     <div className="arrow">
                         &or;
@@ -27,7 +37,8 @@ const RouteOnTheMap = () => {
                         type: "text",
                         name: "to",
                         id: "to",
-                        placeholder: "Куда"
+                        placeholder: "Куда",
+                        changeValue
                     }} />
                     <div className="arrow">
                         &or;
