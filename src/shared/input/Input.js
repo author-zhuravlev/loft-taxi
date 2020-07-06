@@ -10,7 +10,7 @@ const Input = ({ data: { type, name, id, placeholder, changeValue } }) => {
             placeholder={placeholder}
             onChange={changeValue}
         />
-    )
+    );
 };
 
 Input.propTypes = {

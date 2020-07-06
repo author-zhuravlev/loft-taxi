@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Input from './Input';
+import Input from '../../shared/input/Input';
 
 const FormProfile = () => {
     const [form, setForm] = useState({
@@ -78,7 +78,7 @@ const FormProfile = () => {
                 <button type="submit">Сохранить</button>
             </div>
         </form>
-    )
+    );
 };
 
 export default FormProfile;

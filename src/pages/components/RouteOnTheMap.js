@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Input from './Input';
+import Input from '../../shared/input/Input';
 import Tooltip from './Tooltip';
 
 const RouteOnTheMap = () => {
@@ -50,7 +50,7 @@ const RouteOnTheMap = () => {
                 </button>
             </form>
         </div>
-    )
+    );
 };
 
 export default RouteOnTheMap;

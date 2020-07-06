@@ -13,7 +13,7 @@ const Tooltip = () => {
                 Some text
             </div>
         </div>
-    )
+    );
 };
 
 export default Tooltip;

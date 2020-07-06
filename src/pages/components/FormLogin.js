@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import Input from './Input';
+import Input from '../../shared/input/Input';
 import AuthContext from '../../context/AuthContext';
-// import { UseHttp } from '../../hooks/http.hook';//
 
 const FormLogin = () => {
     const auth = useContext(AuthContext);
@@ -25,6 +25,10 @@ const FormLogin = () => {
         } catch (error) {
         
         }
+    };
+
+    if (auth.isAuthenticated) {
+        return <Redirect to='/map' />;
     }
 
     return (

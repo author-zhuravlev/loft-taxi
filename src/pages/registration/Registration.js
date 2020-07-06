@@ -13,7 +13,7 @@ const Registration = () => {
                 <FormRegistration />
             </div>
         </div>
-    )
+    );
 };
 
 export default Registration;

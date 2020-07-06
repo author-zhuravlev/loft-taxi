@@ -10,18 +10,17 @@ import './app.css';
 function App() {
     const { logIn, logOut, name, password } = useAuth();
     const isAuthenticated = !!(name && password);
-    console.log('isAuthenticated: ', isAuthenticated);
-    const routes = useRoutes(isAuthenticated); //если true получаем доступ к Map и Profile
+    const routes = useRoutes();
 
     return (
         <AuthContext.Provider value={{ logIn, logOut, name, password, isAuthenticated }}>
             <BrowserRouter>
                 <div className="app">
-                    { routes }
+                    {routes}
                 </div>
             </BrowserRouter>
         </AuthContext.Provider>
-    )
+    );
 };
 
 export default App;

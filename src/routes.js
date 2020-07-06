@@ -6,32 +6,16 @@ import Registration from './pages/registration/Registration';
 import Map from './pages/map/Map';
 import Profile from './pages/profile/Profile';
 
-const useRoutes = isAuthenticated => {
-    if (isAuthenticated) {
-        return (
-            <Switch>
-                <Route path="/map" exact>
-                    <Map />
-                </Route>
-                <Route path="/profile" exact>
-                    <Profile />
-                </Route>
-                <Redirect to="/map"  exact/>
-            </Switch>
-        )
-    }
-
+const useRoutes = () => {
     return (
         <Switch>
-            <Route path="/login" exact>
-                <Login />
-            </Route>
-            <Route path="/registration" exact>
-                <Registration />
-            </Route>
-            <Redirect to="/login" exact/>
+            <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
+            <Route path="/map" component={Map} />
+            <Route path="/profile" component={Profile} />
+            <Redirect to="/login" component={Login} />
         </Switch>
-    )
+    );
 };
 
 export default useRoutes;

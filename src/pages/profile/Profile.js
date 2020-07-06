@@ -13,7 +13,7 @@ const Profile = () => {
                 <FormProfile />
             </div>
         </div>
-    )
+    );
 };
 
 export default Profile;

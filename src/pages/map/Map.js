@@ -13,7 +13,7 @@ const Map = () => {
             <RouteOnTheMap />
             <MapComponent />
         </div>
-    )
+    );
 };
 
 export default Map;

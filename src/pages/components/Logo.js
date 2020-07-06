@@ -15,7 +15,7 @@ const Logo = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default Logo;

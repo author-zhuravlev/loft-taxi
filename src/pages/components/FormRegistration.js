@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import Input from './Input';
+import Input from '../../shared/input/Input';
 import AuthContext from '../../context/AuthContext';
 
 const FormRegistration = () => {
@@ -26,7 +26,7 @@ const FormRegistration = () => {
         } catch (error) {
         
         }
-    }
+    };
 
     return (
         <div className="registration-form">
@@ -83,7 +83,7 @@ const FormRegistration = () => {
                 </button>
             </form>
         </div>
-    )
+    );
 };
 
 export default FormRegistration;
