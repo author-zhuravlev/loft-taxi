@@ -1,23 +1,31 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Logo from './Logo';
-import AuthContext from '../../context/AuthContext';
+import { logOut } from '../../redux/actions'
 
-const Header = () => {
-    const auth = useContext(AuthContext);
-
+const Header = ({ logOut }) => {
     return (
         <div className="wrapper-header">
             <header>
                 <Logo />
                 <nav className="nav">
-                    <a className="link map" href="/map">Карта</a>
-                    <a className="link profile-link" href="/profile">Профиль</a>
-                    <a className="link logout" onClick={auth.logOut} href="/login">Выйти</a>
+                    <Link className="link map" to="/map">Карта</Link>
+                    <Link className="link profile-link" to="/profile">Профиль</Link>
+                    <Link className="link logout" onClick={logOut} to="/login">Выйти</Link>
                 </nav>
             </header>
         </div>
     );
 };
 
-export default Header;
+Header.protoTypes = {
+    logOut: PropTypes.func
+}
+
+export default connect(
+    null,
+    { logOut }
+)(Header);

@@ -1,35 +1,49 @@
-import React, { useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Input from '../../shared/input/Input';
-import AuthContext from '../../context/AuthContext';
+import { logIn } from '../../redux/actions';
 
-const FormLogin = () => {
-    const auth = useContext(AuthContext);
-    // const { loading, request, error , clearError } = UseHttp();
-
+const FormLogin = ({ logIn }) => {
     const [form, setForm] = useState({
-        name: '',
+        email: '',
         password: ''
     });
 
-    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+    const autoLogin = async () => {
+        const data = JSON.parse(localStorage.getItem('userToken'));
+
+        if (data && data.token) {
+            try {
+                await logIn(data.user);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
+    autoLogin(); // сразу вызываем
+    
+    const changeValue = event => {
+        event.persist();
+        
+        setForm(prevForm => ({
+            ...prevForm,
+            [event.target.name]: event.target.value
+        }));
+    };
 
     const submitHandler = async event => {
         event.preventDefault();
-        // setForm(null);
 
-        try {
-            // const data = await request('/login', 'POST', { ...form });
-            auth.logIn(form.name, form.password); //нужны данные с сервера
-        } catch (error) {
-        
+        if (form.email.trim() && form.email.trim()) {
+            try {
+                logIn(form);
+            } catch (error) {
+                console.error(error);
+            }
         }
     };
-
-    if (auth.isAuthenticated) {
-        return <Redirect to='/map' />;
-    }
 
     return (
         <div className="login-form">
@@ -51,14 +65,13 @@ const FormLogin = () => {
             </div>
             <form
                 id="login"
-                method="POST"
                 onSubmit={submitHandler}
             >
                 <Input data={{
-                    type: "text",
-                    name: "name",
-                    id: "user-name",
-                    placeholder: "Имя пользователя",
+                    type: "email",
+                    name: "email",
+                    id: "user-email",
+                    placeholder: "Email",
                     changeValue
                 }} />
                 <Input data={{
@@ -70,14 +83,21 @@ const FormLogin = () => {
                 }} />
                 <button
                     type="submit"
-                    // disabled={loading} 
                 >
                     Войти
                 </button>
             </form>
         </div>
-    )
+    );
 };
 
-export default FormLogin;
+FormLogin.protoTypes = {
+    logIn: PropTypes.func
+}
+
+export default connect(
+    null,
+    { logIn }
+)(FormLogin);
+
 

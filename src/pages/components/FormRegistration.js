@@ -1,12 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import Input from '../../shared/input/Input';
-import AuthContext from '../../context/AuthContext';
 
 const FormRegistration = () => {
-    const auth = useContext(AuthContext);
-    // const { loading, request, error , clearError } = UseHttp();
-
     const [form, setForm] = useState({
         email: '',
         name: '',
@@ -14,18 +10,18 @@ const FormRegistration = () => {
         password: ''
     });
 
-    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+    const changeValue = event => {
+        event.persist();
+        
+        setForm(prevForm => ({
+            ...prevForm,
+            [event.target.name]: event.target.value
+        }));
+    };
 
     const submitHandler = async event => {
         event.preventDefault();
-        // setForm(null);
 
-        try {
-            // const data = await request('/registration', 'POST', { ...form });
-            auth.logIn(form.name, form.password); //нужны данные с сервера
-        } catch (error) {
-        
-        }
     };
 
     return (

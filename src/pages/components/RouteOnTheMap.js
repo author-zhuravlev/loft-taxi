@@ -9,8 +9,6 @@ const RouteOnTheMap = () => {
         to: ''
     });
 
-    // const { loading, request, error , clearError } = UseHttp();
-
     const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
 
     return (

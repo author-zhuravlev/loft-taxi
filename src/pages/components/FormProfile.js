@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { connect } from 'react-redux';
+
 import Input from '../../shared/input/Input';
 
 const FormProfile = () => {
@@ -10,9 +12,14 @@ const FormProfile = () => {
         cvc: ''
     });
 
-    // const { loading, request, error , clearError } = UseHttp();
-
-    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+    const changeValue = event => {
+        event.persist();
+        
+        setForm(prevForm => ({
+            ...prevForm,
+            [event.target.name]: event.target.value
+        }));
+    };
 
     return (
         <form>
@@ -81,4 +88,4 @@ const FormProfile = () => {
     );
 };
 
-export default FormProfile;
+export default connect(null, null)(FormProfile);
