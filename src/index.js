@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import App from './pages/app/App';
-import { rootReducer } from './redux/reducers/rootReducer';
+import App from './components/app/AppContainer';
+import rootReducer from './store/reducers';
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
