@@ -43,7 +43,7 @@ export const checkIsAuth = () => ({
     type: CHECK_IS_AUTH,
 });
 
-export const register = (payload) => {
+export const registation = (payload) => {
     return {
         type: REGISTER,
         payload

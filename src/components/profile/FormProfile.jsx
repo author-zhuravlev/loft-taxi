@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from "prop-types";
+import { useForm } from 'react-hook-form';
 
 import { Notification } from './Notification';
 
@@ -14,6 +15,8 @@ export const FormProfile = ({ payment, cardData = {} }) => {
         notification: false
     });
 
+    const { register, handleSubmit, errors } = useForm();
+
     const changeValue = event => {
         event.persist();
         
@@ -27,9 +30,7 @@ export const FormProfile = ({ payment, cardData = {} }) => {
     //     const cardNumber
     // };
 
-    const submitHandler = async (event) => {
-        event.preventDefault();
-
+    const submitHandler = async (form) => {
         const token = JSON.parse(localStorage.getItem('userToken')).token;
 
         if (form.cardNumber.trim() && form.expiryDate.trim()
@@ -48,11 +49,13 @@ export const FormProfile = ({ payment, cardData = {} }) => {
         }
     };
 
+    const checkIsNumber = (value) => isNaN(value) ? false : true;
+
     return (
         form.notification
             ? (<Notification />)
             : (<form
-                    onSubmit={submitHandler}
+                    onSubmit={handleSubmit(submitHandler)}
                 >
                     <div className="card-wrapp">
                         <div className="card left">
@@ -67,11 +70,18 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                 <input
                                     type="text"
                                     name="cardNumber"
-                                    id="number-card"
+                                    id="card-number"
                                     placeholder="0000 0000 0000 0000"
                                     onChange={changeValue}
                                     value={form.cardNumber}
+                                    ref={register({ required: true, validate: checkIsNumber })}
                                 />
+                                {errors.cardNumber && errors.cardNumber.type === 'required' && (
+                                    <p className="error">Введите номер кредитной карты</p>
+                                )}
+                                {errors.cardNumber && errors.cardNumber.type === 'validate' && (
+                                    <p className="error">Значение должно содержать только числа</p>
+                                )}
                             </div>
                             <div className="wrapper-input">
                                 <label htmlFor="validity">Срок действия</label>
@@ -82,7 +92,11 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     placeholder="Срок действия"
                                     onChange={changeValue}
                                     value={form.expiryDate}
+                                    ref={register({ required: true })}
                                 />
+                                {errors.expiryDate && errors.expiryDate.type === 'required' && (
+                                    <p className="error">Введите cрок действия</p>
+                                )}
                             </div>
                         </div>
                         <div className="card right">
@@ -95,7 +109,11 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     placeholder="Имя владельца"
                                     onChange={changeValue}
                                     value={form.cardName}
+                                    ref={register({ required: true })}
                                 />
+                                {errors.cardName && errors.cardName.type === 'required' && (
+                                    <p className="error">Введите имя владельца карты</p>
+                                )}
                             </div>
                             <div className="wrapper-input">
                                 <label htmlFor="cvc">CVC</label>
@@ -106,7 +124,14 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     placeholder="CVC"
                                     onChange={changeValue}
                                     value={form.cvc}
+                                    ref={register({ required: true, validate: checkIsNumber })}
                                 />
+                                {errors.cvc && errors.cvc.type === 'required' && (
+                                    <p className="error">Введите CVC</p>
+                                )}
+                                {errors.cvc && errors.cvc.type === 'validate' && (
+                                    <p className="error">Значение должно содержать только числа</p>
+                                )}
                             </div>
                         </div>
                     </div>

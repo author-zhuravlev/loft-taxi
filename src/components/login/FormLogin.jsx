@@ -1,11 +1,14 @@
 import React, { useState } from "react"; // , useEffect
 import PropTypes from "prop-types";
+import { useForm } from 'react-hook-form';
 
 export const FormLogin = ({ logIn }) => {
     const [form, setForm] = useState({
         email: "",
         password: "",
     });
+
+    const { register, handleSubmit, errors } = useForm();
 
     // const autoLogin = async () => {
     //     try {
@@ -24,9 +27,7 @@ export const FormLogin = ({ logIn }) => {
         }));
     };
 
-    const submitHandler = (event) => {
-        event.preventDefault();
-
+    const submitHandler = (form) => {
         if (form.email.trim() && form.password.trim()) {
             try {
                 logIn(form);
@@ -55,20 +56,31 @@ export const FormLogin = ({ logIn }) => {
             </div>
             <form
                 id="login"
-                onSubmit = {submitHandler}
+                onSubmit={handleSubmit(submitHandler)}
             >   
                 <input
                     type="email"
                     name="email"
                     placeholder="Email"
                     onChange={changeValue}
+                    ref={register({ required: true, pattern: /.+@.+\..+/i })}
                 />
+                {errors.email && errors.email.type === 'required' && (
+                    <p className="error">Введите email</p>
+                )}
                 <input
                     type="password"
                     name="password"
                     placeholder="Пароль"
                     onChange={changeValue}
+                    ref={register({ required: true, minLength: 6 })}
                 />
+                {errors.password && errors.password.type === 'required' && (
+                    <p className="error">Введите пароль</p>
+                )}
+                {errors.password && errors.password.type === 'minLength' && (
+                    <p className="error">Значение должно быть больше 6 символов</p>
+                )}
                 <button
                     className="btn"
                     type="submit"
