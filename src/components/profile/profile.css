@@ -6,10 +6,9 @@ div.wrapper-header {
     height: 80%;
 }
 
-.profile form {
+.block-form {
     background: #fff;
     padding: 30px 50px;
-    width: 60%;
     border-radius: 5px;
 }
 
@@ -22,7 +21,7 @@ p {
     margin-bottom: 30px;
 }
 
-.cards {
+.card-wrapp {
     display: flex;
     justify-content: space-around;
 }

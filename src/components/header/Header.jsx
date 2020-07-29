@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Logo from '../logo/Logo';
+import { Logo } from '../logo/Logo';
 
-const HeaderComponent = ({ logOut }) => {
+export const HeaderComponent = ({ logOut }) => {
     return (
         <div className="wrapper-header">
             <header>
@@ -22,5 +22,3 @@ const HeaderComponent = ({ logOut }) => {
 HeaderComponent.protoTypes = {
     logOut: PropTypes.func
 };
-
-export default HeaderComponent;

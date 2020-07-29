@@ -1,0 +1,18 @@
+.wrapper-prompt {
+    flex-direction: column;
+}
+
+.wrapper-prompt h2 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.wrapper-prompt p {
+    font-size: 18px;
+    margin: 30px 0;
+}
+
+.wrapper-prompt a.link-profile {
+    text-decoration: none;
+    color: #fff;
+}

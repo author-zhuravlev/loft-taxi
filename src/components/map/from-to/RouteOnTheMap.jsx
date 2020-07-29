@@ -1,54 +1,84 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 
-import Input from '../../shared/input/Input';
-import Tooltip from '../tooltip/Tooltip';
+import { RouteEntryField } from './RouteEntryField';
+import { Order } from '../order/Order';
 
-const RouteOnTheMap = () => {
+export const RouteOnTheMap = ({ getRoute, addresses }) => {
     const [form, setForm] = useState({
-        from: '',
-        to: ''
+        address1: '',
+        address2: '',
+        isOrder: false,
+        isInputValues: false
     });
 
-    const changeValue = event => setForm({ ...form, [event.target.name]: event.target.value });
+    const submitHandler = async (event) => {
+        event.preventDefault();
+
+        if (form.address1.trim() && form.address2.trim()) {
+            try {
+                getRoute(form);
+
+                setForm(prevForm => ({
+                    ...prevForm,
+                    isOrder: true
+                }));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    };
+
+    // const checkInputValue = (form) => {
+    //     if (form.address1.trim() && form.address2.trim()) {
+    //         setForm(prevForm => ({
+    //             ...prevForm,
+    //             isInputValues: true
+    //         }));
+    //     }
+    // }
 
     return (
-        <div className="wrapper-route">
+        form.isOrder
+        ? (<Order
+                form={form}
+                setForm={setForm}
+        />)
+        : (<div className="wrapper-block-fixed route">
             <form
-                action="#"
                 id="login"
+                onSubmit={submitHandler}
             >
-                <div className="wrapper-input d-flex-center">
-                    <Input data={{
-                        type: "text",
-                        name: "from",
-                        id: "from",
-                        placeholder: "Откуда",
-                        changeValue
-                    }} />
-                    <div className="arrow">
-                        &or;
-                    </div>
-                    <Tooltip />
-                </div>
-                <div className="wrapper-input d-flex-center">
-                    <Input data={{
-                        type: "text",
-                        name: "to",
-                        id: "to",
-                        placeholder: "Куда",
-                        changeValue
-                    }} />
-                    <div className="arrow">
-                        &or;
-                    </div>
-                    <Tooltip />
-                </div>
-                <button type="submit">
+                <RouteEntryField
+                    addresses={addresses}
+                    name={"address1"}
+                    form={form}
+                    setForm={setForm}
+                    placeholder={"Откуда..."}
+                    // checkInputValue={checkInputValue}
+                />
+                <RouteEntryField
+                    addresses={addresses}
+                    name={"address2"}
+                    form={form}
+                    setForm={setForm}
+                    placeholder={"Куда..."}
+                    // checkInputValue={checkInputValue}
+                />
+                <button
+                    // className={ form.isInputValues ? "btn" : "btn disabled" }
+                    className="btn"
+                    type="submit"
+                    // disabled={form.isInputValues ? false : true}
+                >
                     Вызвать такси
-                </button>
+                 </button>
             </form>
-        </div>
+        </div>)
     );
-};
+}
 
-export default RouteOnTheMap;
+RouteOnTheMap.protoTypes = {
+    getRoute: PropTypes.func,
+    addresses: PropTypes.array
+};

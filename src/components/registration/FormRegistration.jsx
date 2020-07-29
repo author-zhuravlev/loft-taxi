@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from "prop-types";
 
-import Input from '../shared/input/Input';
+import './registration.css';
 
-const FormRegistration = () => {
+export const FormRegistration = ({ register }) => {
     const [form, setForm] = useState({
         email: '',
         name: '',
@@ -12,16 +13,23 @@ const FormRegistration = () => {
 
     const changeValue = event => {
         event.persist();
-        
+
         setForm(prevForm => ({
             ...prevForm,
             [event.target.name]: event.target.value
         }));
     };
 
-    const submitHandler = async event => {
+    const submitHandler = event => {
         event.preventDefault();
 
+        if (form.email.trim() && form.password.trim() && form.surname.trim() && form.name.trim()) {
+            try {
+                register(form);
+            } catch (error) {
+                console.error(error);
+            }
+        }
     };
 
     return (
@@ -43,38 +51,39 @@ const FormRegistration = () => {
             <form
                 id="registration"
                 onSubmit={submitHandler}
-            >
-                <Input data={{
-                    type: "email",
-                    name: "email",
-                    id: "user-email",
-                    placeholder: "Адрес электронной почты",
-                    changeValue
-                }} />
+            >   
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Адрес электронной почты"
+                    onChange={changeValue}
+                />
                 <div className="name-surname">
-                    <Input data={{
-                        type: "text",
-                        name: "name",
-                        id: "user-name",
-                        placeholder: "Имя",
-                        changeValue
-                    }} />
-                    <Input data={{
-                        type: "text",
-                        name: "surname",
-                        id: "user-surname",
-                        placeholder: "Фамилия",
-                        changeValue
-                    }} />
+                    <input
+                        type="text"
+                        name="name"
+                        id="user-name"
+                        placeholder="Имя"
+                        onChange={changeValue}
+                    />
+                    <input
+                        type="text"
+                        name="surname"
+                        id="user-email"
+                        placeholder="Фамилия"
+                        onChange={changeValue}
+                    />
                 </div>
-                <Input data={{
-                    type: "password",
-                    name: "password",
-                    id: "user-password",
-                    placeholder: "Пароль",
-                    changeValue
-                }} />
-                <button type="submit">
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Пароль"
+                    onChange={changeValue}
+                />
+                <button
+                    className="btn"
+                    type="submit"
+                >
                     Войти
                 </button>
             </form>
@@ -82,4 +91,6 @@ const FormRegistration = () => {
     );
 };
 
-export default FormRegistration;
+FormRegistration.protoTypes = {
+    register: PropTypes.func,
+};

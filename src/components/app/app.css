@@ -1,5 +1,5 @@
 /*Обнуление*/
-*{
+* {
 	padding: 0;
 	margin: 0;
 	border: 0;
@@ -17,13 +17,16 @@ input,button,textarea{font-family:inherit;}
 input::-ms-clear{display: none;}
 button{cursor: pointer;}
 
+body {
+    overflow: hidden;
+}
+
 .app {
     margin: 0 auto;
     padding: 0;
 }
 
 .wrapper {
-    background-color: #111111;
     background: #111111 url('/background.jpg') no-repeat center bottom;
     height: 100vh;
 }
@@ -37,14 +40,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-button {
-    display: block;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    outline: none;
 }
 
 /* Logo  ----------------------------------------------------------------------------------- */
@@ -68,7 +63,7 @@ button {
 
 /* Header  ----------------------------------------------------------------------------------- */
 .wrapper-header {
-    position: fixed;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -133,7 +128,6 @@ input {
     padding: 10px;
     color: #000;
     font-size: 18px;
-    min-width: 280px;
     width: 100%;
     text-align: center;
     margin-bottom: 15px;
@@ -149,13 +143,20 @@ input:focus {
 
 /* Button ------------------------------------------------------------------------------------------ */
 button {
+    display: block;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn {
     font-size: 17px;
-    padding: 10px 25px;
+    padding: 10px 45px;
     background: #ffa600;
     margin: 20px auto 0 auto;
     border-radius: 5px;
 }
-
-button:hover {
+.btn:hover {
     background: #c27e00;
 }

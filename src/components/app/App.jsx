@@ -1,14 +1,13 @@
-import React from 'react';
-import UseRoutes from '../routes/routes';
+import React from "react";
 
-import './app.css';
+import AppRoutes from "../../containers/routes/AppRoutes";
 
-function AppComponent() {
+import "./app.css";
+
+export const AppComponent = () => {
     return (
         <div className="app">
-            <UseRoutes />
+        <AppRoutes />
         </div>
     );
-};
-
-export default AppComponent;
+}

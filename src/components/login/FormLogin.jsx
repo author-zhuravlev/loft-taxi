@@ -1,40 +1,33 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from "react"; // , useEffect
+import PropTypes from "prop-types";
 
-import Input from '../shared/input/Input';
-
-const FormLogin = ({ logIn }) => {
+export const FormLogin = ({ logIn }) => {
     const [form, setForm] = useState({
-        email: '',
-        password: ''
+        email: "",
+        password: "",
     });
 
-    const autoLogin = async () => {
-        const data = JSON.parse(localStorage.getItem('userToken'));
+    // const autoLogin = async () => {
+    //     try {
+    //         await logIn(userData);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
-        if (data && data.token) {
-            try {
-                await logIn(data.user);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-    };
-    autoLogin(); // сразу вызываем
-    
-    const changeValue = event => {
+    const changeValue = (event) => {
         event.persist();
         
-        setForm(prevForm => ({
+        setForm((prevForm) => ({
             ...prevForm,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         }));
     };
 
-    const submitHandler = async event => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
-        if (form.email.trim() && form.email.trim()) {
+        if (form.email.trim() && form.password.trim()) {
             try {
                 logIn(form);
             } catch (error) {
@@ -43,18 +36,17 @@ const FormLogin = ({ logIn }) => {
         }
     };
 
+    // useEffect(() => {
+    //     autoLogin();
+    // }, []);
+
     return (
         <div className="login-form">
-            <h1>
-                Войти
-            </h1>
+            <h1>Войти</h1>
             <div className="link-blcok">
+                <span>Новый пользователь?</span>
                 <span>
-                    Новый пользователь?
-                </span>
-                <span>
-                    <a
-                        href="/registration"
+                    <a href = "/registration"
                         className="link-reg"
                     >
                         Зарегистрируйтесь
@@ -63,36 +55,31 @@ const FormLogin = ({ logIn }) => {
             </div>
             <form
                 id="login"
-                onSubmit={submitHandler}
-            >
-                <Input data={{
-                    type: "email",
-                    name: "email",
-                    id: "user-email",
-                    placeholder: "Email",
-                    changeValue
-                }} />
-                <Input data={{
-                    type: "password",
-                    name: "password",
-                    id: "user-password",
-                    placeholder: "Пароль",
-                    changeValue
-                }} />
+                onSubmit = {submitHandler}
+            >   
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={changeValue}
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Пароль"
+                    onChange={changeValue}
+                />
                 <button
+                    className="btn"
                     type="submit"
                 >
                     Войти
-                </button>
-            </form>
+                </button> 
+            </form> 
         </div>
     );
 };
 
 FormLogin.protoTypes = {
-    logIn: PropTypes.func
-}
-
-export default FormLogin;
-
-
+    logIn: PropTypes.func,
+};

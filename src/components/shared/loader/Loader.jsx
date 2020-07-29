@@ -2,7 +2,7 @@ import React from 'react';
 
 import './loader.css';
 
-export default () => {
+export const Loader = () => {
     return (
         <div className="loading">
             <div className="lds-roller">
