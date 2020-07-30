@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 
-import { drawRoute } from './drawRoute';
 import Header from '../header/HeaderContainer';
 import { RouteOnTheMap } from '../../components/map/from-to/RouteOnTheMap';
 import { MapComponent } from '../../components/map/MapComponent';
@@ -27,7 +26,6 @@ const Map = ({ isCardData, checkIsCardData, getAddress, getRoute, addresses, coo
                 />
                 : <Prompt />}
             <MapComponent
-                drawRoute={drawRoute}
                 coordinates={ coordinates }
             />
         </div>

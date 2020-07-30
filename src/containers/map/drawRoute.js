@@ -1,4 +1,8 @@
 export const drawRoute = (map, coordinates) => {
+    if (map.getLayer('route')) {
+        map.removeLayer('route').removeSource('route');
+    }
+
     map.flyTo({
       center: coordinates[0],
       zoom: 15
