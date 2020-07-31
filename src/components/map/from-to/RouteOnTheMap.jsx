@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
+import Select from 'react-select';
 
 import { RouteEntryField } from './RouteEntryField';
 import { Order } from '../order/Order';
 
 export const RouteOnTheMap = ({ getRoute, addresses }) => {
+    const [address1, setAddress1] = useState({
+        address1: ''
+    });
+    const [address2, setAddress2] = useState({
+        address2: ''
+    });
     const [form, setForm] = useState({
-        address1: '',
-        address2: '',
         isOrder: false,
         isInputValues: false
     });
@@ -15,9 +20,12 @@ export const RouteOnTheMap = ({ getRoute, addresses }) => {
     const submitHandler = async (event) => {
         event.preventDefault();
 
-        if (form.address1.trim() && form.address2.trim()) {
+        if (address1.address1.trim() && address2.address2.trim()) {
             try {
-                getRoute(form);
+                getRoute({
+                    ...address1,
+                    ...address2
+                });
 
                 setForm(prevForm => ({
                     ...prevForm,
@@ -29,14 +37,14 @@ export const RouteOnTheMap = ({ getRoute, addresses }) => {
         }
     };
 
-    // const checkInputValue = (form) => {
-    //     if (form.address1.trim() && form.address2.trim()) {
-    //         setForm(prevForm => ({
-    //             ...prevForm,
-    //             isInputValues: true
-    //         }));
-    //     }
-    // }
+    useEffect(() => {
+        if (address1.address1.trim() && address2.address2.trim()) {
+            setForm(prevForm => ({
+                ...prevForm,
+                isInputValues: true
+            }));
+        }
+    }, [address1, address2])
 
     return (
         form.isOrder
@@ -52,24 +60,21 @@ export const RouteOnTheMap = ({ getRoute, addresses }) => {
                 <RouteEntryField
                     addresses={addresses}
                     name={"address1"}
-                    form={form}
-                    setForm={setForm}
+                    form={address1}
+                    setForm={setAddress1}
                     placeholder={"Откуда..."}
-                    // checkInputValue={checkInputValue}
                 />
                 <RouteEntryField
                     addresses={addresses}
                     name={"address2"}
-                    form={form}
-                    setForm={setForm}
+                    form={address2}
+                    setForm={setAddress2}
                     placeholder={"Куда..."}
-                    // checkInputValue={checkInputValue}
                 />
                 <button
-                    // className={ form.isInputValues ? "btn" : "btn disabled" }
-                    className="btn"
+                    className={ form.isInputValues ? "btn" : "btn disabled" }
                     type="submit"
-                    // disabled={form.isInputValues ? false : true}
+                    disabled={form.isInputValues ? false : true}
                 >
                     Вызвать такси
                  </button>

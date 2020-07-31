@@ -15,7 +15,7 @@ export const MapComponent = ({ coordinates }) => {
     useEffect(() => {
         let map;
         mapboxGl.accessToken = MAPBOX_TOKEN;
-
+        
         map = new mapboxGl.Map({
             container: mapConteiner.current,
             style: 'mapbox://styles/mapbox/streets-v11',
@@ -31,15 +31,22 @@ export const MapComponent = ({ coordinates }) => {
     }, []);
     
     useEffect(() => {
+        if (mapObj.current.getLayer('route')) {
+                
+            mapObj.current
+                .removeLayer('route')
+                .removeSource('route');
+        }
+
         if (coordinates.length) {
             drawRoute(mapObj.current, coordinates);
         }
     }, [coordinates]);
 
     return (
-        <div id="map-wrapper">
+        <main id="map-wrapper">
             <div id="map" ref={mapConteiner}></div>
-        </div>
+        </main>
     );
 };
 

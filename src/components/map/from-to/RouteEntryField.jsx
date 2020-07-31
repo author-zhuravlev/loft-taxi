@@ -13,21 +13,21 @@ export class RouteEntryField extends React.Component {
 
     render() {
         return (
-                <div className="wrapper-input d-flex-center">
-                    <div className="route-entry-field">
-                        <div className="entry">
+            <div className="wrapper-input d-flex-center">
+                <div className="route-entry-field">
+                    <div className="entry">
                         <Select
-                                inputValue={this.props.form.name}
-                                onChange={this.handleChange}
-                                options={this.props.addresses}
-                                name={this.name}
-                                placeholder={this.props.placeholder}
-                                hideSelectedOptions={true}
-                                isClearable={true}
-                            />
-                        </div>
+                            inputValue={this.props.form.name}
+                            onChange={this.handleChange}
+                            options={this.props.addresses}
+                            name={this.name}
+                            placeholder={this.props.placeholder}
+                            hideSelectedOptions={true}
+                            isClearable={true}
+                        />
                     </div>
                 </div>
+            </div>
         );
     }
 }

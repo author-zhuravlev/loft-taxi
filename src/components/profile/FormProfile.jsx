@@ -14,21 +14,14 @@ export const FormProfile = ({ payment, cardData = {} }) => {
         cvc: cardData.cvc || '',
         notification: false
     });
-
     const { register, handleSubmit, errors } = useForm();
 
     const changeValue = event => {
-        event.persist();
-        
-        setForm(prevForm => ({
-            ...prevForm,
+        setForm({
+            ...form,
             [event.target.name]: event.target.value
-        }));
+        });
     };
-
-    // const addSpaceToCard = () => {
-    //     const cardNumber
-    // };
 
     const submitHandler = async (form) => {
         const token = JSON.parse(localStorage.getItem('userToken')).token;
@@ -49,12 +42,12 @@ export const FormProfile = ({ payment, cardData = {} }) => {
         }
     };
 
-    const checkIsNumber = (value) => isNaN(value) ? false : true;
+    const checkIsNumber = value => isNaN(value) ? false : true;
 
     return (
         form.notification
-            ? (<Notification />)
-            : (<form
+            ?   (<Notification />)
+            :   (<form
                     onSubmit={handleSubmit(submitHandler)}
                 >
                     <div className="card-wrapp">
@@ -73,8 +66,11 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     id="card-number"
                                     placeholder="0000 0000 0000 0000"
                                     onChange={changeValue}
-                                    value={form.cardNumber}
-                                    ref={register({ required: true, validate: checkIsNumber })}
+                                    defaultValue={cardData.cardNumber ? cardData.cardNumber : ''}
+                                ref={register({
+                                    required: true,
+                                    validate: checkIsNumber,
+                                })}
                                 />
                                 {errors.cardNumber && errors.cardNumber.type === 'required' && (
                                     <p className="error">Введите номер кредитной карты</p>
@@ -91,7 +87,7 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     id="validity"
                                     placeholder="Срок действия"
                                     onChange={changeValue}
-                                    value={form.expiryDate}
+                                    defaultValue={cardData.expiryDate ? cardData.expiryDate  : ''}
                                     ref={register({ required: true })}
                                 />
                                 {errors.expiryDate && errors.expiryDate.type === 'required' && (
@@ -108,7 +104,7 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     id="user-name"
                                     placeholder="Имя владельца"
                                     onChange={changeValue}
-                                    value={form.cardName}
+                                    defaultValue={cardData.cardName ? cardData.cardName  : ''}
                                     ref={register({ required: true })}
                                 />
                                 {errors.cardName && errors.cardName.type === 'required' && (
@@ -123,7 +119,7 @@ export const FormProfile = ({ payment, cardData = {} }) => {
                                     id="cvc"
                                     placeholder="CVC"
                                     onChange={changeValue}
-                                    value={form.cvc}
+                                    defaultValue={cardData.cvc ? cardData.cvc  : ''}
                                     ref={register({ required: true, validate: checkIsNumber })}
                                 />
                                 {errors.cvc && errors.cvc.type === 'required' && (

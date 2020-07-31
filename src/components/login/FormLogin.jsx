@@ -1,30 +1,20 @@
-import React, { useState } from "react"; // , useEffect
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from 'react-hook-form';
 
 export const FormLogin = ({ logIn }) => {
     const [form, setForm] = useState({
         email: "",
-        password: "",
+        password: ""
     });
 
     const { register, handleSubmit, errors } = useForm();
 
-    // const autoLogin = async () => {
-    //     try {
-    //         await logIn(userData);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
-    const changeValue = (event) => {
-        event.persist();
-        
-        setForm((prevForm) => ({
-            ...prevForm,
+    const changeValue = event => {
+        setForm({
+            ...form,
             [event.target.name]: event.target.value,
-        }));
+        });
     };
 
     const submitHandler = (form) => {
@@ -36,10 +26,6 @@ export const FormLogin = ({ logIn }) => {
             }
         }
     };
-
-    // useEffect(() => {
-    //     autoLogin();
-    // }, []);
 
     return (
         <div className="login-form">

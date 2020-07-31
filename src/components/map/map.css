@@ -11,7 +11,7 @@
 
 /* Map component ------------------------------------------------------------------------------------ */
 #map {
-    height: 100vh;
+    height: calc(100vh - 77px);
     width: 100%;
     background-color: #fff;
 }

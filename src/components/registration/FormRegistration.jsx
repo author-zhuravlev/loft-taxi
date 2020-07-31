@@ -15,12 +15,10 @@ export const FormRegistration = ({ registation }) => {
     const { register, handleSubmit, errors } = useForm();
 
     const changeValue = event => {
-        event.persist();
-
-        setForm(prevForm => ({
-            ...prevForm,
+        setForm({
+            ...form,
             [event.target.name]: event.target.value
-        }));
+        });
     };
 
     const submitHandler = form => {

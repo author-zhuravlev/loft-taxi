@@ -25,7 +25,7 @@ export const paymentReducer = (state = initialState, actions) => {
             if (cardData) {
                 return { ...state, isCardData: true, cardData };
             } else {
-                return { ...state, isCardData: false };
+                return { ...state, isCardData: false, cardData: {} };
             }
         default:
             return state;
