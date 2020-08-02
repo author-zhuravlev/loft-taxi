@@ -17,7 +17,7 @@ export const FormLogin = ({ logIn }) => {
         });
     };
 
-    const submitHandler = (form) => {
+    const submitHandler = form => {
         if (form.email.trim() && form.password.trim()) {
             try {
                 logIn(form);

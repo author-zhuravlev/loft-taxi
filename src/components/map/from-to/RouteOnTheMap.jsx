@@ -1,31 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types";
-import Select from 'react-select';
 
 import { RouteEntryField } from './RouteEntryField';
 import { Order } from '../order/Order';
 
 export const RouteOnTheMap = ({ getRoute, addresses }) => {
-    const [address1, setAddress1] = useState({
-        address1: ''
-    });
-    const [address2, setAddress2] = useState({
-        address2: ''
-    });
     const [form, setForm] = useState({
+        address1: '',
+        address2: '',
         isOrder: false,
         isInputValues: false
     });
 
-    const submitHandler = async (event) => {
+    let newAddresses;
+
+    if (form.address1.trim() || form.address2.trim()) {
+        newAddresses = addresses.filter(address =>
+            address.value !== form.address1 &&
+            address.value !== form.address2
+        );
+    } else { 
+        newAddresses = addresses;
+    }
+
+    const submitHandler = event => {
         event.preventDefault();
 
-        if (address1.address1.trim() && address2.address2.trim()) {
+        if (form.address1.trim() && form.address2.trim()) {
             try {
-                getRoute({
-                    ...address1,
-                    ...address2
-                });
+                getRoute(form);
 
                 setForm(prevForm => ({
                     ...prevForm,
@@ -38,13 +41,13 @@ export const RouteOnTheMap = ({ getRoute, addresses }) => {
     };
 
     useEffect(() => {
-        if (address1.address1.trim() && address2.address2.trim()) {
+        if (form.address1.trim() && form.address2.trim()) {
             setForm(prevForm => ({
                 ...prevForm,
                 isInputValues: true
             }));
         }
-    }, [address1, address2])
+    }, [form.address1, form.address2]);
 
     return (
         form.isOrder
@@ -58,17 +61,17 @@ export const RouteOnTheMap = ({ getRoute, addresses }) => {
                 onSubmit={submitHandler}
             >
                 <RouteEntryField
-                    addresses={addresses}
+                    addresses={newAddresses  || addresses}
                     name={"address1"}
-                    form={address1}
-                    setForm={setAddress1}
+                    form={form}
+                    setForm={setForm}
                     placeholder={"Откуда..."}
                 />
                 <RouteEntryField
-                    addresses={addresses}
+                    addresses={newAddresses || addresses}
                     name={"address2"}
-                    form={address2}
-                    setForm={setAddress2}
+                    form={form}
+                    setForm={setForm}
                     placeholder={"Куда..."}
                 />
                 <button

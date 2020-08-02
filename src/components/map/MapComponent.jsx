@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import mapboxGl from 'mapbox-gl';
 import PropTypes from "prop-types";
 
-import './map.css';
-
 import { drawRoute } from '../../containers/map/drawRoute';
+
+import './map.css';
 
 const MAPBOX_TOKEN = "pk.eyJ1Ijoib2xlZy16aHVyYXZsZXYiLCJhIjoiY2tidWlnaWdzMGp0bTJ5bjZuaW5wc3pxZyJ9.LTJViZsyD8gRxziIkYtlaw";
 

@@ -4,7 +4,10 @@ export const Order = ({ form, setForm }) => {
     const makeNewOrder = () => {
         setForm({
             ...form,
-            isOrder: false
+            address1: '',
+            address2: '',
+            isOrder: false,
+            isInputValues: false
         });
     };
 
